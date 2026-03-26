@@ -2,6 +2,15 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 export default function UserDetail() {
   const router = useRouter();
 
@@ -21,16 +30,33 @@ export default function UserDetail() {
 
   return (
     <div className="h-screen w-screen flex items-center justify-center gap-4 flex-col">
-      <h1 className="text-3xl text-amber-400">User {id}</h1>
-      {id && (
-        <Image alt="Image" src={image[id - 1].url} width={200} height={200} />
-      )}
-      <button
-        onClick={() => router.back()}
-        className="cursor-pointer bg-blue-600 rounded-lg p-4 font-semibold hover:bg-blue-800 transition-colors"
-      >
-        Voltar
-      </button>
+      <Card>
+        <CardHeader>
+          <CardTitle>Usuário: {id}</CardTitle>
+          <CardDescription>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum,
+            officiis.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {id && (
+            <Image
+              alt="Image"
+              src={image[id - 1].url}
+              width={200}
+              height={200}
+            />
+          )}
+        </CardContent>
+        <CardFooter>
+          <button
+            onClick={() => router.back()}
+            className="cursor-pointer bg-blue-600 rounded-lg p-4 font-semibold hover:bg-blue-800 transition-colors"
+          >
+            Voltar
+          </button>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
