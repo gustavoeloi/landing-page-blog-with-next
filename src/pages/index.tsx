@@ -14,10 +14,7 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} flex min-h-screen items-center justify-center bg-zinc-800 font-sans dark:bg-black`}
-    >
-      <Header />
+    <div>
       <h2>Hellow World</h2>
     </div>
   );

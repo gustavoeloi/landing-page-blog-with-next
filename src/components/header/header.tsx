@@ -8,8 +8,6 @@ import { ActiveLink } from "../active-link";
 
 export const Header = () => {
   const router = useRouter();
-  const isHomePage = router.pathname === "/";
-  const isBlogPage = router.pathname.startsWith("/blog");
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-backgroud/95 backdrop-blur supports-backdrop-filters:bg-background/60">
@@ -18,7 +16,7 @@ export const Header = () => {
           <Link href="/">
             <Image
               alt="logo website"
-              src="./logo-site.svg"
+              src="/logo-site.svg"
               width={100}
               height={24}
             />
