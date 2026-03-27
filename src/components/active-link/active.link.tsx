@@ -18,8 +18,8 @@ export const ActiveLink = ({ children, href, ...rest }: ActiveLink) => {
     <Link
       href={href}
       className={cn(
-        "text-sm font-medium transition-colors hover:text-blue-500",
-        isCurrentPath ? "text-blue-500" : "text-muted-foreground",
+        "text-sm font-medium transition-colors hover:text-blue-200",
+        isCurrentPath ? "text-blue-200" : "text-muted-foreground",
       )}
     >
       {children}
