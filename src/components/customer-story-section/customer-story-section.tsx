@@ -17,7 +17,7 @@ export const CustomerStorySection = () => {
       author: {
         name: "Jacob Jones",
         role: "CEO na JJ Corp",
-        avatar: "/avatar-2.jpg",
+        avatar: "/avatar-2  .jpg",
       },
     },
   ];
