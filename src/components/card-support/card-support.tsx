@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { Paintbrush } from "lucide-react";
 
 type VariantCard = "darkBlue" | "darkGreen";
 
