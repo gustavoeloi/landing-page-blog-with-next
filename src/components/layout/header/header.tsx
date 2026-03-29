@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/logo";
 import { useRouter } from "next/router";
-import { ActiveLink } from "../active-link";
+import { ActiveLink } from "../../active-link";
 
 export const Header = () => {
   const router = useRouter();

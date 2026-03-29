@@ -1,5 +1,5 @@
 import { Store } from "lucide-react";
-import { BtnLoja } from "../btn-loja";
+import { BtnLoja } from "@/components/btn-loja";
 import { PT_Sans_Caption } from "next/font/google";
 
 const ptSansCaption = PT_Sans_Caption({

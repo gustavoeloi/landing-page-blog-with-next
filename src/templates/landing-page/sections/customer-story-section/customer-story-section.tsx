@@ -1,4 +1,4 @@
-import { CustomerStoryCard } from "../customer-story-card";
+import { CustomerStoryCard } from "@/components/customer-story-card";
 
 export const CustomerStorySection = () => {
   const customerStories = [

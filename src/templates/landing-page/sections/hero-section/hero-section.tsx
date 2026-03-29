@@ -1,9 +1,9 @@
-import { ArrowRight, Clock, Store } from "lucide-react";
-import { Button } from "../ui/button";
+import { Clock, Store } from "lucide-react";
+
 import Image from "next/image";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { BtnLoja } from "../btn-loja";
+
+import { BtnLoja } from "@/components/btn-loja";
+
 import { PT_Sans_Caption } from "next/font/google";
 
 const ptSansCaptions = PT_Sans_Caption({
