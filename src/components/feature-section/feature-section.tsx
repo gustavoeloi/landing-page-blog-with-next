@@ -17,16 +17,16 @@ export const FeatureSection = () => {
         tag="prático"
       />
 
-      <div className="col-span-full flex flex-col gap-2">
-        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 rounded-lg bg-gray-500 p-6 md:p-12">
+      <div className="col-span-full flex flex-col gap-2 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4 rounded-lg bg-gray-500 pb-6">
           <CardFeature
             title="Venda para seu público através de uma plataforma única"
-            tag="prático"
+            tag="personalizável"
           >
             <BtnLoja style="hidden md:flex" />
           </CardFeature>
 
-          <div className="flex flex-col items-center justify-center w-full">
+          <div className="flex flex-col items-center justify-center w-full  ">
             <div className="w-full max-w-md overflow-hidden">
               <Image
                 src="/feature-section.svg"

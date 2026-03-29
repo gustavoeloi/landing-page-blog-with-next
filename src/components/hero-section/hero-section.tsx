@@ -4,13 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { BtnLoja } from "../btn-loja";
+import { PT_Sans_Caption } from "next/font/google";
+
+const ptSansCaptions = PT_Sans_Caption({
+  subsets: ["latin"],
+  weight: "700",
+});
 
 export const HeroSection = () => {
   return (
     <section className="container relative flex items-center justify-center mt-32 md:mt-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8  min-h-80 md:h-144 items-center">
         <div className="flex flex-col items-center justify-center gap-4 md:items-start lg:items-start">
-          <h1 className="text-gray-100 text-heading-hg font-sans text-center md:text-start">
+          <h1
+            className={`${ptSansCaptions.className}text-gray-100 text-heading-lg md:text-heading-hg font-sans text-center md:text-start`}
+          >
             Venda seus produtos como afiliado em um único lugar
           </h1>
 
@@ -18,14 +26,14 @@ export const HeroSection = () => {
             <div>
               <div className="flex items-center gap-2">
                 <Clock className="text-cyan-100 h-4 w-4" />
-                <span className="text-body-md text-gray-200">
+                <span className=" text-body-sm md:text-body-md text-gray-200">
                   Crie o seu site em menos de 5 minutos
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
                 <Store className="text-cyan-100 h-4 w-4" />
-                <span className="text-body-md text-gray-200">
+                <span className="text-body-sm md:text-body-md text-gray-200">
                   Acompanhe e otimize seu negócio online
                 </span>
               </div>

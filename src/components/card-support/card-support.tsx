@@ -28,7 +28,7 @@ export const CardSupport = ({
       )}
     >
       <span
-        className={`p-2 rounded-lg  w-fit ${variant === "darkBlue" ? "bg-blue-200" : "bg-cyan-200"}`}
+        className={`p-2 rounded-lg w-fit ${variant === "darkBlue" ? "bg-blue-200" : "bg-cyan-200"}`}
       >
         {children}
       </span>
