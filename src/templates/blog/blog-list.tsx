@@ -1,5 +1,6 @@
 import { Search } from "@/components/search";
 import { useRouter } from "next/router";
+import { PostCard } from "./components/post-card";
 
 export const PostsList = () => {
   const router = useRouter();
@@ -24,6 +25,14 @@ export const PostsList = () => {
 
           <Search />
         </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-16">
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+          <PostCard />
+        </div>
       </div>
     </section>
   );
