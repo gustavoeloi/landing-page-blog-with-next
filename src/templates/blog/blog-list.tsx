@@ -1,6 +1,8 @@
 import { Search } from "@/components/search";
 import { useRouter } from "next/router";
 import { GridPosts } from "@/templates/blog/components/grid-posts";
+import { allPosts } from "contentlayer/generated";
+import { PostCard } from "./components/post-card";
 
 export const PostsList = () => {
   const router = useRouter();
@@ -8,6 +10,8 @@ export const PostsList = () => {
   const pageTitle = query
     ? `Resultado(s) de busca para: "${query}"`
     : "Dicas e estratégias para impulsionar seu negócio";
+
+  const posts = allPosts;
 
   return (
     <section className="py-24 grow">
@@ -26,7 +30,22 @@ export const PostsList = () => {
           <Search />
         </header>
 
-        <GridPosts />
+        <GridPosts>
+          {posts.map((post) => (
+            <PostCard
+              key={post._id}
+              title={post.title}
+              date={new Date(post.date).toLocaleDateString("pt-BR")}
+              description={post.description}
+              author={{
+                name: post.author.name,
+                avatar: post.author.avatar,
+              }}
+              image={post.image}
+              slug={post.slug}
+            />
+          ))}
+        </GridPosts>
       </div>
     </section>
   );
