@@ -32,7 +32,7 @@ export const PostCard = ({
           <div className="absolute top-0 right-0 bg-gray-600/80 backdrop-blur-sm rounded-bl-lg p-2 z-10">
             <span className="text-gray-300 text-body-xs font-bold">{date}</span>
           </div>
-          <div className="aspect-video relative overflow-hidden rounded-md">
+          <div className="aspect-video relative overflow-hidden rounded-md re">
             <Image
               src={image}
               alt={title}
