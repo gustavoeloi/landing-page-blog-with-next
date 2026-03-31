@@ -1,17 +1,25 @@
 import { Search } from "@/components/search";
 import { useRouter } from "next/router";
 import { GridPosts } from "@/templates/blog/components/grid-posts";
-import { allPosts } from "contentlayer/generated";
+import { allPosts, Post } from "contentlayer/generated";
 import { PostCard } from "./components/post-card";
+import { CloudAlert } from "lucide-react";
 
 export const PostsList = () => {
   const router = useRouter();
-  const query = router.query.q;
+  const query = router.query.q as string;
   const pageTitle = query
     ? `Resultado(s) de busca para: "${query}"`
     : "Dicas e estratégias para impulsionar seu negócio";
 
-  const posts = allPosts;
+  const posts = query
+    ? allPosts.filter((post) =>
+        post.title
+          .toLocaleLowerCase()
+          .includes(query.toLocaleLowerCase().trim()),
+      )
+    : allPosts;
+  const hasPosts = posts.length > 0;
 
   return (
     <section className="py-24 grow">
@@ -30,22 +38,33 @@ export const PostsList = () => {
           <Search />
         </header>
 
-        <GridPosts>
-          {posts.map((post) => (
-            <PostCard
-              key={post._id}
-              title={post.title}
-              date={new Date(post.date).toLocaleDateString("pt-BR")}
-              description={post.description}
-              author={{
-                name: post.author.name,
-                avatar: post.author.avatar,
-              }}
-              image={post.image}
-              slug={post.slug}
-            />
-          ))}
-        </GridPosts>
+        {hasPosts && (
+          <GridPosts>
+            {posts.map((post) => (
+              <PostCard
+                key={post._id}
+                title={post.title}
+                date={new Date(post.date).toLocaleDateString("pt-BR")}
+                description={post.description}
+                author={{
+                  name: post.author.name,
+                  avatar: post.author.avatar,
+                }}
+                image={post.image}
+                slug={post.slug}
+              />
+            ))}
+          </GridPosts>
+        )}
+
+        {!hasPosts && (
+          <div className="my-16 flex flex-col items-center justify-center gap-4 ">
+            <CloudAlert className="w-8 h-8 text-blue-300 " />
+            <p className=" text-center text-heading-sm text-gray-300 italic">
+              Nenhum post foi encontrado!
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

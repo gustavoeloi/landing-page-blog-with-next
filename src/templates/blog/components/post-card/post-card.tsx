@@ -35,7 +35,7 @@ export const PostCard = ({
           <div className="aspect-video relative overflow-hidden rounded-md">
             <Image
               src={image}
-              alt={"Primeiro Post"}
+              alt={title}
               fill
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
