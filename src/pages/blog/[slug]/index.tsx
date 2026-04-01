@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { allPosts } from "contentlayer/generated";
+import { toast } from "sonner";
 
 import {
   Breadcrumb,
@@ -11,6 +12,15 @@ import {
 } from "@/components/ui/breadcrumb";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
+import { CallToAction } from "@/templates/landing-page/sections";
+
+type socialMediaType = {
+  href?: string;
+  name: string;
+  imagePath: string;
+  copyLink?: () => void;
+};
 
 export default function SlugPost() {
   const router = useRouter();
@@ -18,10 +28,41 @@ export default function SlugPost() {
 
   const post = allPosts.find((post) => post._raw.flattenedPath === slug);
 
+  const handleCopyLink = () => {
+    const currentURL = window.location.href;
+    navigator.clipboard.writeText(currentURL);
+    toast("✅ Link copiado com sucesso!", {
+      description: "Use CTRL + V para colar",
+    });
+  };
+
+  const socialMedias: socialMediaType[] = [
+    {
+      href: "https://www.linkedin.com",
+      name: "Linkedin",
+      imagePath: "/assets/linkedin.svg",
+    },
+    {
+      href: "https://www.facebook.com",
+      name: "Facebook",
+      imagePath: "/assets/facebook.svg",
+    },
+    {
+      href: "https://www.slack.com",
+      name: "Slack",
+      imagePath: "/assets/slack.svg",
+    },
+    {
+      name: "Copiar Link",
+      imagePath: "/assets/link.svg",
+      copyLink: handleCopyLink,
+    },
+  ];
+
   return (
     post && (
-      <main className="py-24">
-        <div className="container">
+      <main className="pt-24">
+        <div className="container mb-24">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -36,8 +77,8 @@ export default function SlugPost() {
             </BreadcrumbList>
           </Breadcrumb>
 
-          <div className="mt-8 md:flex md:gap-6">
-            <div className="bg-gray-500 rounded-md border border-gray-400 overflow-hidden">
+          <div className="mt-8 md:flex gap-4">
+            <div className="bg-gray-500 rounded-md border border-gray-400 overflow-hidden max-w-179.5">
               <div className="aspect-video relative">
                 <Image
                   src={post.image}
@@ -75,11 +116,56 @@ export default function SlugPost() {
                 </div>
               </div>
             </div>
-            <div className="hidden md:flex">
-              <p>Compartilhar</p>
+            <div className="hidden md:flex flex-col gap-8 w-full">
+              <p className="text-heading-xs text-gray-200 ">Compartilhar</p>
+
+              <ul className="flex flex-col gap-3 ">
+                {socialMedias.map((s) => {
+                  if (s.copyLink && !s.href) {
+                    return (
+                      <li key={s.name}>
+                        <button
+                          onClick={s.copyLink}
+                          className="flex gap-3 items-center w-full px-5 py-3 border border-gray-400 rounded group hover:border-blue-200 transition-all cursor-pointer"
+                        >
+                          <Image
+                            src={s.imagePath}
+                            alt={s.name}
+                            width={16}
+                            height={16}
+                          />
+                          <span className="text-action-sm">{s.name}</span>
+                        </button>
+                      </li>
+                    );
+                  }
+
+                  return (
+                    <li
+                      className="px-5 py-3 border border-gray-400 rounded group hover:border-blue-200 transition-all duration-200 "
+                      onClick={s.copyLink}
+                    >
+                      <Link
+                        href={s.href as string}
+                        className="flex gap-3 items-center group-hover:text-blue-200"
+                      >
+                        <Image
+                          alt={s.name}
+                          src={s.imagePath}
+                          width={16}
+                          height={16}
+                          className="group-hover:text-blue-200 transition-colors "
+                        />
+                        <span className="text-action-sm">{s.name}</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>
+        <CallToAction />
       </main>
     )
   );
