@@ -4,24 +4,27 @@ import { GridPosts } from "@/templates/blog/components/grid-posts";
 import { allPosts, Post } from "contentlayer/generated";
 import { PostCard } from "./components/post-card";
 import { CloudAlert } from "lucide-react";
-import { Footer } from "@/components/layout/footer";
 import { CallToAction } from "../landing-page/sections";
 
-export const PostsList = () => {
+export type BlogListProps = {
+  posts: Post[];
+};
+
+export const PostsList = ({ posts }: BlogListProps) => {
   const router = useRouter();
   const query = router.query.q as string;
   const pageTitle = query
     ? `Resultado(s) de busca para: "${query}"`
     : "Dicas e estratégias para impulsionar seu negócio";
 
-  const posts = query
-    ? allPosts.filter((post) =>
+  const postsList = query
+    ? posts.filter((post) =>
         post.title
           .toLocaleLowerCase()
           .includes(query.toLocaleLowerCase().trim()),
       )
     : allPosts;
-  const hasPosts = posts.length > 0;
+  const hasPosts = postsList.length > 0;
 
   return (
     <section className="pt-24 grow">
@@ -42,7 +45,7 @@ export const PostsList = () => {
 
         {hasPosts && (
           <GridPosts>
-            {posts.map((post) => (
+            {postsList.map((post) => (
               <PostCard
                 key={post._id}
                 title={post.title}

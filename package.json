@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --webpack",
     "contentlayer": "npx contentlayer2 build",
-    "build": "contentlayer2 build && next build",
+    "build": "contentlayer2 build && next build --webpack",
     "start": "next start",
     "lint": "eslint"
   },
