@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+"use client";
 import { allPosts } from "contentlayer/generated";
 import { toast } from "sonner";
 
@@ -14,6 +14,7 @@ import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
 import { CallToAction } from "@/templates/landing-page/sections";
+import { useSearchParams } from "next/navigation";
 
 type socialMediaType = {
   href?: string;
@@ -23,8 +24,8 @@ type socialMediaType = {
 };
 
 export const BlogPost = () => {
-  const router = useRouter();
-  const slug = router.query.slug as string;
+  const searchParams = useSearchParams();
+  const slug = searchParams?.get("slug") ?? "";
 
   const post = allPosts.find((post) => post._raw.flattenedPath === slug);
 
